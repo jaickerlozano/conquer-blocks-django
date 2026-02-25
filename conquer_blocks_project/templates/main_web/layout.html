@@ -1,0 +1,19 @@
+<!doctype html>
+<html class="no-js" lang="es">
+
+    {% include '_includes/_main_head.html' %}
+
+<body class="{% block body_class %}body_class{% endblock  %}">
+
+    {% include '_includes/_main_header.html' %}
+    
+    {% block page_content %}
+
+    {% endblock %}
+
+    {% include '_includes/_main_footer.html' %}
+
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

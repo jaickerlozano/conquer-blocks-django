@@ -1,0 +1,39 @@
+{% extends 'main_web/layout.html' %}
+
+{% block description %}
+    Login de Conquer Blocks
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+{% block title %}
+    Login - Academia Conquer Blocks
+{% endblock %} 
+
+{% block body_class %}page-login{% endblock body_class %}
+
+{% block page_content %}
+    <main class="main">
+      <h1 class="title">Inicio de sesión</h1>
+      <form class="form" action="#" method="post" name="login" enctype="multipart/form-data">
+        {% csrf_token %} <div class="form__group">
+          <label class="form__label" for="user">Ingrese su Email</label>
+          <input class="form__input form__input--mail" type="email" name="user" id="user" placeholder="example@gmail.com" max="30" maxlength="35" required>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="password">Contraseña</label>
+          <input class="form__input form__input--password" type="password" name="password" id="password" max="20" required>
+        </div>
+
+        <div class="form__button--container">
+          <button class="form__button form__button--submit" type="submit">Iniciar sesión</button>
+          <button class="form__button form__button--reset" type="reset">Borrar formulario</button>
+        </div>
+      </form>
+    </main>
+{% endblock %} ```
+
+

@@ -1,0 +1,102 @@
+{% extends 'main_web/layout.html' %} {% block description %}
+    Déjanos tu mensaje
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+{% block title %}
+    Contacto - Academia Conquer Blocks
+{% endblock %} 
+
+{% block body_class %}page-contacto{% endblock body_class %}
+
+{% block page_content %}
+    <main class="main">
+      <h1 class="main__title">Contacta con nosotros</h1>
+    
+      <div class="main__contact-container">
+        <section class="contact-form">
+          <form class="form" action="#" method="get" name="formulario-de-contacto">
+            <p class="main__intro">
+              Envíanos tus consultas por medio del siguiente formulario y nos contactaremos contigo. 
+            </p>
+            <fieldset class="form__fieldset">
+              <legend class="form__legend">Datos de Contacto</legend>
+              
+              <div class="form__group">
+                <label class="form__label" for="name">Nombre*</label>
+                <input class="form__input" type="text" name="name" id="name" required>
+              </div>
+              
+              <div class="form__group">
+                <label class="form__label" for="email">Email*</label>
+                <input class="form__input" type="email" name="email" id="email" required>
+              </div>
+              
+              <div class="form__group">
+                <label class="form__label" for="phone">Teléfono</label>
+                <input class="form__input" type="tel" name="phone" id="phone">
+              </div>
+              
+              <div class="form__group">
+                <label class="form__label" for="address">Dirección*</label>
+                <input class="form__input" type="text" name="address" id="address" required>
+              </div>
+              
+              <div class="form__group">
+                <label class="form__label" for="subject">Asunto*</label>
+                <input class="form__input" type="text" name="subject" id="subject" required>
+              </div>
+              
+              <div class="form__group">
+                <label class="form__label" for="message">Mensaje*</label>
+                <textarea class="form__textarea" name="message" id="message" rows="10" required></textarea>
+              </div>
+              
+              <div class="form__button form__button--container">
+                <button class="form__button form__button--submit" type="submit">Enviar mensaje</button>
+                <button class="form__button form__button--reset" type="reset">Borrar formulario</button>  
+              </div>
+            </fieldset>
+          </form>
+        </section>
+    
+        <section class="contact-map">
+          <h2 class="contact-map__title">Puedes encontrarnos aquí</h2>
+          <div class="contact-map__container">
+            <iframe class="contact-map__iframe" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.2318043644053!2d-70.6231940!3d-33.4432646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDI2JzM1LjciUyA3MMKwMzcnMjMuNSJX!5e0!3m2!1ses-419!2scl!4v1620000000000!5m2!1ses-419!2scl" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          
+          <div class="contact-info">
+            <div class="contact-info__item">
+              <svg class="contact-info__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+              </svg>
+              <p class="contact-info__text">Av. Principal 1234, Santiago</p>
+            </div>
+            
+            <div class="contact-info__item">
+              <svg class="contact-info__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+              </svg>
+              <p class="contact-info__text">contacto@conquerblocks.com</p>
+            </div>
+            
+            <div class="contact-info__item">
+              <svg class="contact-info__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" fill="currentColor"/>
+              </svg>
+              <p class="contact-info__text">+56 9 1234 5678</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+{% endblock %}

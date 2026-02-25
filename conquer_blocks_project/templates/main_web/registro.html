@@ -1,0 +1,70 @@
+{% extends 'main_web/layout.html' %} {% block description %}
+    Formulario de registro Conquer Blocks
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+{% block title %}
+    Registro - Academia Conquer Blocks
+{% endblock %} 
+
+{% block body_class %}page-registro{% endblock body_class %}
+
+{% block page_content %}
+    <main class="main">
+      <section class="contact-form">
+        <h1 class="title">Formulario de Registro</h1>
+        <form class="form" action="#" method="post" name="Registro" enctype="multipart/form-data">
+          {% csrf_token %} <p class="form__intro">Completa el siguiente formulario de registro para acceder a nuestro contenido.</p>
+          <fieldset class="form__fieldset">
+            <legend class="form__legend">Datos Personales</legend>
+
+            <div class="form__group">
+              <label class="form__label" for="name">Nombre Completo</label>
+              <input class="form__input" type="text" name="name" id="name" maxlength="30" 
+              placeholder="Ejemplo: César Augusto Contreras Leal" size="30" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="birthday">Fecha de nacimiento</label>
+              <input class="form__input" type="date" name="birthday" id="birthday" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="email">Correo electrónico</label>
+              <input class="form__input" type="email" name="email" id="email" placeholder="example@gmail.com" max="30" maxlength="35" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="address">Dirección</label>
+              <input class="form__input" type="text" name="address" id="address" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="webpage">Página Web</label>
+              <input class="form__input" type="text" name="webpage" id="webpage">
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="photo">Foto</label>
+              <input class="form__file" type="file" name="photo" id="photo" accept="image/*">
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="bio">Biografía</label><br>
+              <textarea class="form__textarea" name="bio" id="bio" placeholder="Ingresa una breve biografía" cols="30" rows="5"></textarea>
+            </div>
+
+            <div class="form__button form__button--container">
+              <button class="form__button form__button--submit" type="submit">Enviar</button>
+              <button class="form__button form__button--reset" type="reset">Borrar formulario</button>            
+            </div>
+
+          </fieldset>
+        </form>        
+      </section>
+
+    </main>
+{% endblock %}

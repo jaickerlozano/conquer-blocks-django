@@ -1,0 +1,38 @@
+{% extends 'main_web/layout.html' %} 
+
+{% block description %}
+    Manténte informado con las noticias más relevante del mundo Full Stack
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+ {% block title %}
+    Blog - Academia Conquer Blocks
+{% endblock %} 
+
+{% block body_class %}page-cursos{% endblock body_class %}
+
+{% block page_content %}
+    <main class="main">
+      <section class="main__intro">
+        <h1 class="main__title">Noticias en el mundo del Desarrollo Full Stack</h1>
+        <p class="main__subtitle">En nuestro blog podrás estar enterado de las últimas noticias en el mundo del desarrollo Web Full Stack</p>
+
+        {% for post in posts %}
+          <article id="{{ post.pk }}">
+            <h2> {{ post.title }} </h2>
+            <p> Fecha de publicación: {{ post.created_at}} </p>
+            <div>
+              {{ post.content|truncatechars:100 }}
+            </div>
+            <P><a href="{% url 'blog:blog_detail' post.pk %}">Ver noticia completa</a></P>
+          </article>
+        {% endfor %}
+
+      </section>
+
+    </main>
+{% endblock %}
+

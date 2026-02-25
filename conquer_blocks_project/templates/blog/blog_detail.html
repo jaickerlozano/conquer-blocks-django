@@ -1,0 +1,33 @@
+{% extends 'main_web/layout.html' %}
+
+{% block description %}
+    Manténte informado con las noticias más relevante del mundo Full Stack
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+ {% block title %}
+    Blog - Academia Conquer Blocks
+{% endblock %} 
+
+{% block body_class %}page-cursos{% endblock body_class %}
+
+{% block page_content %}
+    <main class="main">
+
+      <section class="main__articles">
+        <article id="{{ post.pk }}">
+          <h1> {{ post.title }} </h1>
+          <p> Fecha de publicación: {{ post.created_at}} </p>
+          <div>
+            {{ post.content}}
+          </div>
+          <p><a href="{% url 'blog:index' %}">Volver a las noticias</a></p>
+        </article>
+      </section>
+
+    </main>
+{% endblock %}
+

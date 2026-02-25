@@ -1,0 +1,10 @@
+    {% load static %}
+    
+    <header class="header">
+      <figure>
+        <a class="header__logo" href="{% url 'main_web:index' %}"><img src="{% static 'img/logotipo_conquer_blocks.png' %}" alt="Logotipo de Conquer Blocks" width="200" height="40"></a>
+      </figure>
+
+      
+      {% include '_includes/_main_menu.html' %}
+    </header>

@@ -1,0 +1,42 @@
+{% extends 'main_web/layout.html' %}
+
+{% block description %}
+    Profundiza en nuestros cursos de Desarrollo Full Stack, Blockchain, Inteligencia Artificial, Ciberseguridad
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+ {% block title %}
+    Cursos - Academia Conquer Blocks
+{% endblock %} 
+
+{% block body_class %}page-cursos{% endblock body_class %}
+
+{% block page_content %}
+    <main class="main">
+
+      <section class="main__articles">
+        <article id="{{ course.pk }}">
+          {% if course.course_image %}
+            <picture>
+              <img src="{{ course.course_image.thumbnails.large.url }}" alt="Imagen del curso {{ course.title }}" loading="lazy">
+            </picture>
+          {% endif %}
+          <h1> {{ course.title }} </h1>
+          <p> Fecha de publicación: {{ course.created_at}} </p>
+          <div>
+            {{ course.content|safe}}
+          </div>
+          {% if course.toc %}
+            <p><a href="{{ course.toc.url }}" download>Descarga el temario del curso</a></p>
+          {% endif %}
+          <p><a href="{{ course.call_link }}">Agenda tu llamada</a></p>
+          <p><a href="{% url 'courses:index' %}">Volver a los cursos</a></p>
+        </article>
+      </section>
+
+    </main>
+{% endblock %}
+
