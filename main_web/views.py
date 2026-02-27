@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect  
 from courses.models import Course
 from blog.models import Post
-from .forms import ContactForm
+from .forms import ContactForm, LoginForm
 from django.core.mail import send_mail
 from .models import Contact
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+
 
 
 # Create your views here.
@@ -24,7 +27,47 @@ def registro_view(request):
     return render(request, 'main_web/registro.html')
 
 def login_view(request):
-    return render(request, 'main_web/login.html')
+    if request.POST:
+        # Procesamos el formulario de login enviado
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            # authenticate verifica las credenciales contra la base de datos
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                # Si el usuario es válido, login() crea la sesión del usuario
+                login(request, user)
+                # Redirigimos a la página de inicio tras el login exitoso
+                return redirect(reverse('main_web:index'))
+            
+            else:
+                context = {
+                    'form': form,
+                    'error': True,
+                    'error_message': "Usuario no válido"
+                }
+                return render(request, 'main_web/login.html', context)
+
+        else:
+            context = {
+                'form': form,
+                'error': True
+            }
+            return render(request, 'main_web/login.html', context)
+    else:
+        form = LoginForm()
+        context = {
+            'form': form
+        }
+
+        return render(request, 'main_web/login.html', context)
+    
+def logout_view(request):
+    # logout() cierra la sesión actual y limpia los datos de sesión
+    logout(request)
+    return redirect(reverse('main_web:index'))
 
 def contacto_view(request):
 
@@ -55,8 +98,8 @@ def contacto_view(request):
             success = send_mail(
                 "Formulario de contacto - Conquer Blocks",
                 message_content,
-                "info@laveladaconquer.com",
-                ["jlozano@gmail.com"],
+                "jlozano.devcode@gmail.com",
+                ["elyna.sierra98@gmail.com"],
                 fail_silently=False,
             )
 
