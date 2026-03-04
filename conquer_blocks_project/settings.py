@@ -11,10 +11,19 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR es la ruta absoluta al directorio base del proyecto. Se usa para construir rutas a otros archivos de manera dinámica.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Dirección de los templates
 # Aquí definimos dónde buscará Django los archivos HTML.
@@ -80,6 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'conquer_blocks_project.context_processor.get_clave',
             ],
         },
     },
@@ -121,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
@@ -257,7 +267,7 @@ CKEDITOR_CONFIGS = {
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'jlozano.devcode@gmail.com' 
-EMAIL_HOST_PASSWORD = 'eeoo oivp pwjf zvce'
+EMAIL_HOST_PASSWORD = env('CLAVE')
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
@@ -267,4 +277,5 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# autf lguj kzqr zmwu / para mi correo personal
+CLAVE = env('CLAVE')
+COLOR = env('COLOR')
