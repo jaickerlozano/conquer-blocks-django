@@ -1,24 +1,19 @@
-from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView
 
 from .models import Post
 
 
-# Create your views here.
-def blog_list(request):
-    all_post = Post.objects.all()
-    context = {
-        'posts': all_post,
-    }
-    return render(request, 'blog/blog_list.html', context)
-
 class BlogListView(ListView):
     model = Post
-    template_name = 'blog/blog_list_ccbv.html'
+    template_name = 'blog/blog_list.html'
     context_object_name = 'posts'
+    paginate_by = 10
+    ordering = ['-created_at']
+
 
 def blog_detail(request, id):
-    post = Post.objects.get(pk=id)
+    post = get_object_or_404(Post, pk=id)
     context = {
         'post': post,
     }

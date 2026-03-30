@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import cursos_detail, cursos_list
+from .views import CursosDetailView, CursosListView
 
 app_name = 'courses'
 
 urlpatterns = [
-    path('', cursos_list, name='index'),
-    path('<int:id>/', cursos_detail, name='courses_detail'),
+    path('', CursosListView.as_view(), name='index'),
+    path('<int:id>/', CursosDetailView.as_view(), name='courses_detail'),
 ]
