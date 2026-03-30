@@ -1,4 +1,5 @@
-from django.conf import settings    
+from django.conf import settings
+
 
 def get_clave(request):
     return {

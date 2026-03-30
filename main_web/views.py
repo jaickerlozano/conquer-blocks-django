@@ -1,15 +1,18 @@
-from django.shortcuts import render, redirect  
-from courses.models import Course
-from blog.models import Post
-from .forms import ContactForm, LoginForm, UserRegisterForm
-from django.core.mail import send_mail
-from .models import Contact
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import (
+    User,  # Importamos el modelo User para crear nuevos usuarios en el registro
+)
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.models import User # Importamos el modelo User para crear nuevos usuarios en el registro
 from django.views.generic import TemplateView
-from django.views.generic.edit import FormView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, FormView
+
+from blog.models import Post
+from courses.models import Course
+
+from .forms import ContactForm, LoginForm, UserRegisterForm
+from .models import Contact
 
 
 # Create your views here.
@@ -34,7 +37,7 @@ class HomeView(TemplateView):
 
 class HomeView2(HomeView):
     template_name = 'main_web/index2.html'
-    
+
 
 def quienes_somos_view(request):
     return render(request, 'main_web/quienes_somos.html')
@@ -57,8 +60,7 @@ def registro_view(request):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             password1 = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-           
+
             user = User.objects.create_user(
                 username=username,
                 email=email,
@@ -69,7 +71,7 @@ def registro_view(request):
                 user.first_name = first_name
                 user.last_name = last_name
                 user.save()
-            
+
             # Construir el contenido del mensaje de correo electrónico con los datos del formulario.
             message_content = f'Usuario registrado exitosamente:\nNombre de usuario: {username}\nEmail: {email}'
 
@@ -116,7 +118,7 @@ class RegistroView(CreateView):
         # Esto hace lo más importante: llama a form.save() (creando el usuario en la BD)
         # y devuelve una respuesta de redirección (HttpResponseRedirect) hacia success_url.
         response = super().form_valid(form)
-        
+
         # 2. Accedemos al objeto recién creado.
         # CreateView guarda el objeto creado en self.object automáticamente tras el éxito.
         user = self.object
@@ -131,7 +133,7 @@ class RegistroView(CreateView):
             [user.email],
             fail_silently=False,
         )
-        
+
         # 3. Devolvemos la respuesta original (la redirección al login)
         return response
 
@@ -150,7 +152,7 @@ def login_view(request):
                 login(request, user)
                 # Redirigimos a la página de inicio tras el login exitoso
                 return redirect(reverse('main_web:index'))
-            
+
             else:
                 context = {
                     'form': form,
@@ -172,7 +174,7 @@ def login_view(request):
         }
 
         return render(request, 'main_web/login.html', context)
-    
+
 def logout_view(request):
     # logout() cierra la sesión actual y limpia los datos de sesión
     logout(request)
@@ -186,7 +188,7 @@ def contacto_view(request):
     if request.method == 'POST':
         # Creamos una instancia del formulario ContactForm con los datos enviados por el usuario (request.POST).
         formulario = ContactForm(request.POST)
-        
+
         # Si el formulario es válido, procesamos los datos y enviamos el correo electrónico.
         if formulario.is_valid():
 
@@ -220,20 +222,20 @@ def contacto_view(request):
                 'success': success
             }
 
-            return render(request, 'main_web/contacto.html', context)  
+            return render(request, 'main_web/contacto.html', context)
 
         else:
             # Si el formulario no es válido, renderizamos la plantilla de contacto nuevamente con el formulario que contiene los errores de validación.
             context = {
                 'form': formulario,
             }
-            return render(request, 'main_web/contacto.html', context)  
-    
+            return render(request, 'main_web/contacto.html', context)
+
     # Si el método de la solicitud no es POST, significa que el usuario está accediendo a la página de contacto por primera vez, por lo que simplemente renderizamos la plantilla con un formulario vacío.
     formulario = ContactForm()
     context = {
         'form': formulario
-    }   
+    }
     return render(request, 'main_web/contacto.html', context)
 
 class ContactoView(FormView):
@@ -260,7 +262,7 @@ class ContactoView(FormView):
         )
 
         # Enviar el correo electrónico con el contenido del formulario
-        success = send_mail(
+        send_mail(
             "Formulario de contacto - Conquer Blocks",
             message_content,
             "jlozano.devcode@gmail.com",

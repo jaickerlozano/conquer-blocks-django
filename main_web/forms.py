@@ -1,6 +1,7 @@
 from django import forms
-from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(label="Nombre", max_length=100)
@@ -41,10 +42,10 @@ class UserRegisterForm(forms.ModelForm):
         password2 = self.cleaned_data.get('password2')
         if password1 != password2 and password1 != '':
             raise forms.ValidationError("Las contraseñas no coinciden.")
-        
+
         if password2 != '':
             validate_password(password2)
-        
+
         return password2
 
     # Sobrescribimos el método save para manejar la encriptación de la contraseña.

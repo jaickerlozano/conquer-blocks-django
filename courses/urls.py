@@ -1,5 +1,6 @@
-from django.urls import path, include
-from .views import cursos_list, cursos_detail
+from django.urls import path
+
+from .views import cursos_detail, cursos_list
 
 app_name = 'courses'
 

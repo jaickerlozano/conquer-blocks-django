@@ -1,19 +1,34 @@
-      <button class="header__toggle" id="menu-toggle" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<button class="header__toggle" id="menu-toggle" aria-label="Abrir menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
-      <nav class="header__nav" id="nav">
-        <ul>
-          <li class="header__item"><a class="active" href="{% url 'main_web:index' %}">Home</a></li>
-          <li class="header__item"><a href="{% url 'main_web:quienes_somos' %}">Quiénes somos</a></li>
-          
-          <li class="header__item"><a href="{% url 'courses:index' %}">Cursos</a></li>
-          <li class="header__item"><a href="{% url 'blog:index' %}">Blog</a></li>
-          
-          <li class="header__item"><a href="{% url 'main_web:registro' %}">Registro</a></li>
-          <li class="header__item"><a href="{% url 'main_web:login' %}">Login</a></li>
-          <li class="header__item"><a href="{% url 'main_web:contacto' %}">Contacto</a></li>
-        </ul>
-      </nav>
+<nav class="header__nav" id="nav">
+  <ul>
+    <li class="header__item"><a class="active" href="{% url 'main_web:index' %}">Home</a></li>
+    <li class="header__item"><a href="{% url 'main_web:quienes_somos' %}">Quiénes somos</a></li>
+    
+    <li class="header__item"><a href="{% url 'courses:index' %}">Cursos</a></li>
+    <li class="header__item"><a href="{% url 'blog:index' %}">Blog</a></li>
+    
+    {% if not request.user.is_authenticated %}
+      <li class="header__item"><a href="{% url 'main_web:registro' %}">Registro</a></li>
+    {% endif %}
+
+    <li class="header__item"><a href="{% url 'main_web:contacto' %}">Contacto</a></li>
+    
+    {% if request.user.is_authenticated %}
+      <li class="header__item"><a href="{% url 'main_web:logout' %}">Logout</a></li>
+    {% endif %} 
+  </ul>
+</nav>
+
+
+<section class="header__user">
+  {% if request.user.is_authenticated %}
+        <p>Estás logueado como {{ request.user }}</p>
+  {% else %}
+        <p class="header__item"><a href="{% url 'main_web:login' %}">Login</a></p>
+  {% endif %}
+</section>

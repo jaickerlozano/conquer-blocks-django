@@ -17,16 +17,15 @@
 {% block page_content %}
     <main class="main">
       <h1 class="title">Inicio de sesión</h1>
-      <form class="form" action="#" method="post" name="login" enctype="multipart/form-data">
-        {% csrf_token %} <div class="form__group">
-          <label class="form__label" for="user">Ingrese su Email</label>
-          <input class="form__input form__input--mail" type="email" name="user" id="user" placeholder="example@gmail.com" max="30" maxlength="35" required>
-        </div>
 
-        <div class="form__group">
-          <label class="form__label" for="password">Contraseña</label>
-          <input class="form__input form__input--password" type="password" name="password" id="password" max="20" required>
-        </div>
+      {% if error_message %}
+        <div class="alert alert-danger" style="color: red;">{{ error_message }}</div>
+      {% endif %}
+
+      <form class="form" action="#" method="post" name="login" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
 
         <div class="form__button--container">
           <button class="form__button form__button--submit" type="submit">Iniciar sesión</button>

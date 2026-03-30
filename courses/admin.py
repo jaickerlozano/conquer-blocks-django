@@ -1,5 +1,7 @@
 from django.contrib import admin
+
 from .models import Course
+
 
 # Registra el modelo Course en el panel de administración usando el decorador.
 @admin.register(Course)

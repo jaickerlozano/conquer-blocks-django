@@ -21,12 +21,12 @@
           ¡Tu mensaje ha sido enviado correctamente!
         </div>
         
-        {% else %}
-          <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Enviar</button>
-          </form>
+      {% else %}
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Enviar</button>
+        </form>
       {% endif %}
     </main>
 {% endblock %}

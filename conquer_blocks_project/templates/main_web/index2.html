@@ -1,0 +1,75 @@
+{% extends 'main_web/layout.html' %}
+
+{% block description %}
+    Fórmate con nosotros en nuestros distintos Másters en Desarrollo Full Stack, Blockchain
+{% endblock %}
+
+{% block keywords %}
+    Desarrollo Full Stack, Cursos, Blog, Resgistros, Quiénes Somos, tecnologías, Inteligencia Artificial
+{% endblock %}
+
+{% block title %}
+    Academia Conquer Blocks - Fórmate en Desarrollador Full Stack, Blockchain, Inteligencia Artificial o Ciberseguridad
+{% endblock %} 
+
+{% block body_class %}page-home{% endblock body_class %}
+
+{% block page_content %}
+<main class="main">
+      <section class="main__intro">
+        <div class="main__intro-container">
+          <h1 class="main__intro-title">Bienvenido a Conquer Blocks</h1>
+          <p class="main__intro-text main-text">
+            Aprende las nuevas tecnologías que lideran el mundo digital actualmente en el mundo.          
+          </p>          
+        </div>
+        <figure>
+          <img class="main__intro-img" src="img/home/image_512-9.jpg" alt="Desenvuélvete en el área digital" width="300" loading="lazy">
+          <figcaption>Nuevas profesiones tecnológicas</figcaption>
+        </figure>
+      </section>
+
+      <section class="main__discover">
+        <h2 class="main__discover-title">Descubre quien es Conquer Blocks</h2>
+        <p class="main__discover-text main-text">
+          Con <strong>Conquer Blocks</strong> podrás aprender todo lo relacionado en el área digital y formarte en una de nuestras áreas 
+          especializadas.        
+        </p>
+        <p class="main__discover-text main-text">Conoce más sobre nosotros en <a class="link" href="{% url 'main_web:quienes_somos' %}">Conquer Blocks</a>.</p>
+      </section>
+
+      <section class="main__specializations">
+        <h2 class="main__specializations-title">Nuevas especializaciones en el mundo del desarrollo web</h2>
+        <div class="main__specializations-articles-container">
+          {% for course in courses %}
+            <article id="{{ course.pk }}">
+              <h3> {{ course.title }} </h3>
+              <p> Fecha de creación: {{ course.created_at}} </p>
+              <div>
+                {{ course.content|truncatechars:100 }}
+              </div>
+              <P><a href="{% url 'courses:courses_detail' course.pk %}">Ver curso completo</a></P>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+      
+      <section class="main__news">
+        <h2 class="main__news-title">Últimas dos noticias de nuestro blog</h2>
+
+        <div class="main__news-container-articles">
+          {% for post in posts %}
+            <article id="{{ post.pk }}">
+              <h3> {{ post.title }} </h3>
+              <p> Fecha de publicación: {{ post.created_at}} </p>
+              <div>
+                {{ post.content|truncatechars:100 }}
+              </div>
+              <P><a href="{% url 'blog:blog_detail' post.pk %}">Ver noticia completa</a></P>
+            </article>
+          {% endfor %}
+        </div>
+          <p class="main__text">Si quieres ver nuestro blog y ver todas las noticias haz click <a class="link" href="{% url 'blog:index' %}">aquí</a>.</p>
+      </section>
+    </main>
+{% endblock %}

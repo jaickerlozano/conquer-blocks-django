@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 import environ
 
 env = environ.Env(
@@ -169,7 +170,7 @@ INTERNAL_IPS = [
 MEDIA_URL = '/media/'
 # Ruta absoluta en el sistema de archivos donde se guardarán los archivos subidos.
 MEDIA_ROOT = BASE_DIR / 'media'
-# Para el FieldFiled del modelo Course  
+# Para el FieldFiled del modelo Course
 
 # Configuración de Thumbnails (miniaturas)
 THUMBNAILS = {
@@ -266,7 +267,7 @@ CKEDITOR_CONFIGS = {
 '''Mail is sent using the SMTP host and port specified in the EMAIL_HOST and EMAIL_PORT settings. The EMAIL_HOST_USER and EMAIL_HOST_PASSWORD settings, if set, are used to authenticate to the SMTP server, and the EMAIL_USE_TLS and EMAIL_USE_SSL settings control whether a secure connection is used.'''
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'jlozano.devcode@gmail.com' 
+EMAIL_HOST_USER = 'jlozano.devcode@gmail.com'
 EMAIL_HOST_PASSWORD = env('CLAVE')
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587

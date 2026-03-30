@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect  
-from .models import Course
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+from .models import Course
 
 # Create your views here.
 

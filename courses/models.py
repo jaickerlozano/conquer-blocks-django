@@ -1,7 +1,8 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils import timezone
 from thumbnails.fields import ImageField
-from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 # Definición del modelo Course, que representa un curso en la base de datos.
