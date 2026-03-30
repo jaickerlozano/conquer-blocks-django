@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conquer-blocks"
+version = "0.1.0"
+description = "Conquer Blocks Django Project"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "conquer_blocks_project.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+testpaths = ["main_web", "blog", "courses"]
+addopts = "-v --tb=short"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["main_web", "blog", "courses"]
+omit = ["*/tests.py", "*/migrations/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["main_web", "blog", "courses"]
